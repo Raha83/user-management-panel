@@ -1,9 +1,10 @@
+using Microsoft.AspNetCore.Identity;
+
 namespace ManagementPanel
 {
-    public class Role
+    public class Role : IdentityRole
     {
-        public int id { get; set; }
-        public string title { get; set; } = null!;
         public string? description { get; set; }
+        public virtual ICollection<Permission> permissions { get; set; } = null!;
     }
 }

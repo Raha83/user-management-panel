@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("user-management-panel")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+1fb0472ad08759b362751d34b39e2f708314ce61")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+91d4353b484b4ee17cd31fdfb2678d84eb22a79b")]
 [assembly: System.Reflection.AssemblyProductAttribute("user-management-panel")]
 [assembly: System.Reflection.AssemblyTitleAttribute("user-management-panel")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
