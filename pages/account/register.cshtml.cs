@@ -2,6 +2,7 @@ using System.ComponentModel.DataAnnotations;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
+using Microsoft.Identity.Client.NativeInterop;
 
 namespace ManagementPanel.Pages.Account
 {
@@ -23,28 +24,29 @@ namespace ManagementPanel.Pages.Account
             [Display(Name = "نام خانوادگی")]
             public string? LName { get; set; }
 
-            [Required]
+            [Required(ErrorMessage = "لطفا ایمیل خود را وارد کنید.")]
             [Display(Name = "ایمیل")]
-            [EmailAddress]
+            [EmailAddress(ErrorMessage = "فرمت ایمیل وارد شده صحیح نیست.")]
             public string Email { get; set; } = string.Empty;
 
             [Display(Name = "شماره تماس")]
             [DataType(DataType.PhoneNumber)]
+            [Phone(ErrorMessage = "فرمت شماره تماس وارد شده صحیح نیست.")]
             public string? PhoneNumber { get; set; }
 
-            [Required]
+            [Required(ErrorMessage = "لطفا رمز عبور خود را وارد کنید.")]
             [Display(Name = "رمز عبور")]
             [DataType(DataType.Password)]
             public string Password { get; set; } = string.Empty;
 
-            [Required]
+            [Required(ErrorMessage = "لطفا رمز عبور خود را تکرار کنید.")]
             [Display(Name = "تکرار رمز عبور")]
             [DataType(DataType.Password)]
-            [Compare(nameof(Password))]
+            [Compare(nameof(Password), ErrorMessage = "رمز عبور با تکرار آن مطابقت ندارد.")]
             public string ConfirmPassword { get; set; } = string.Empty;
 
             [Display(Name = "تصویر پروفایل")]
-            [DataType(DataType.ImageUrl)]
+            [DataType(DataType.ImageUrl, ErrorMessage = "فرمت فایل وارد شده صحیح نیست.")]
             public IFormFile? ProfileImage { get; set; }
         }
         public async Task<IActionResult> OnPostAsync()

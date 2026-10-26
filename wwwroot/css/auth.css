@@ -1,0 +1,53 @@
+h2 {
+    font-size: 26px;
+    font-weight: 700;
+    color: #333d6b;
+    text-align: center;
+    margin-bottom: 24px;
+    line-height: 1.5;
+}
+
+.form-label {
+    display: block;
+    margin-bottom: 8px;
+    font-size: 14px;
+    font-weight: 600;
+    color: #333d6b;
+}
+
+.form-control {
+    width: 100%;
+    padding: 10px 12px;
+    font-size: 14px;
+    color: #333d6b;
+    background-color: #fff;
+    border: 1px solid #ced4da;
+    border-radius: 8px;
+    transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.form-control:focus {
+    border-color: #333d6b;
+    box-shadow: 0 0 0 3px rgba(51, 61, 107, 0.15);
+    outline: none;
+}
+
+.form-control::placeholder {
+    color: #9ca3af;
+    font-size: 13px;
+}
+
+.form-control:disabled {
+    background-color: #f3f4f6;
+    cursor: not-allowed;
+}
+
+
+.text-danger {
+    display: block;
+    margin-top: 6px;
+    color: #dc3545;
+    font-size: 12px;
+    font-weight: 500;
+    line-height: 1.8;
+}

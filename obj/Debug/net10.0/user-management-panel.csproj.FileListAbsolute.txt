@@ -281,3 +281,4 @@ D:\raha\C#\UserManagement\user-management-panel\bin\Debug\net10.0\Microsoft.AspN
 D:\raha\C#\UserManagement\user-management-panel\obj\Debug\net10.0\user-management-panel.RazorAssemblyInfo.cache
 D:\raha\C#\UserManagement\user-management-panel\obj\Debug\net10.0\user-management-panel.RazorAssemblyInfo.cs
 D:\raha\C#\UserManagement\user-management-panel\bin\Debug\net10.0\user-management-panel.staticwebassets.runtime.json
+D:\raha\C#\UserManagement\user-management-panel\obj\Debug\net10.0\compressed\71k5guooae-{0}-suh1iia806-suh1iia806.gz

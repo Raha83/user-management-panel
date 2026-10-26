@@ -1,3 +1,4 @@
+using System.Globalization;
 using ManagementPanel;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
@@ -14,11 +15,12 @@ builder.Services.AddIdentity<User, Role>(options =>
     options.Password.RequireDigit = true;
 
     options.SignIn.RequireConfirmedEmail = true;
-}).AddEntityFrameworkStores<ManagementContext>().AddDefaultTokenProviders();
+}).AddErrorDescriber<PersianIdentityErrorDescriber>().AddEntityFrameworkStores<ManagementContext>().AddDefaultTokenProviders();
 builder.Services.AddRazorPages();
 var app = builder.Build();
 app.UseAuthentication();
 app.UseAuthorization();
+app.UseStaticFiles();
 app.MapRazorPages();
 
 app.MapGet("/", () => "Hello World!");
