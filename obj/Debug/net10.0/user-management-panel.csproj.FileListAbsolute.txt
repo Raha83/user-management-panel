@@ -278,3 +278,6 @@ D:\raha\C#\UserManagement\user-management-panel\bin\Debug\net10.0\tr\Microsoft.C
 D:\raha\C#\UserManagement\user-management-panel\bin\Debug\net10.0\zh-Hans\Microsoft.CodeAnalysis.Scripting.resources.dll
 D:\raha\C#\UserManagement\user-management-panel\bin\Debug\net10.0\zh-Hant\Microsoft.CodeAnalysis.Scripting.resources.dll
 D:\raha\C#\UserManagement\user-management-panel\bin\Debug\net10.0\Microsoft.AspNetCore.Identity.EntityFrameworkCore.dll
+D:\raha\C#\UserManagement\user-management-panel\obj\Debug\net10.0\user-management-panel.RazorAssemblyInfo.cache
+D:\raha\C#\UserManagement\user-management-panel\obj\Debug\net10.0\user-management-panel.RazorAssemblyInfo.cs
+D:\raha\C#\UserManagement\user-management-panel\bin\Debug\net10.0\user-management-panel.staticwebassets.runtime.json
