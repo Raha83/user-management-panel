@@ -14,7 +14,7 @@ builder.Services.AddIdentity<User, Role>(options =>
     options.Password.RequiredLength = 8;
     options.Password.RequireDigit = true;
 
-    options.SignIn.RequireConfirmedEmail = true;
+    options.SignIn.RequireConfirmedEmail = false;
 }).AddErrorDescriber<PersianIdentityErrorDescriber>().AddEntityFrameworkStores<ManagementContext>().AddDefaultTokenProviders();
 builder.Services.AddRazorPages();
 var app = builder.Build();
@@ -22,7 +22,5 @@ app.UseAuthentication();
 app.UseAuthorization();
 app.UseStaticFiles();
 app.MapRazorPages();
-
-app.MapGet("/", () => "Hello World!");
 
 app.Run();

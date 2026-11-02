@@ -67,19 +67,19 @@ namespace ManagementPanel.Pages.Account
             }
             var user = new User
             {
-                fname = Input.FName,
-                lname = Input.LName,
+                FName = Input.FName,
+                LName = Input.LName,
                 UserName = Input.Email,
                 Email = Input.Email,
                 PhoneNumber = Input.PhoneNumber,
                 PasswordHash = Input.Password,
-                profileImage = imagePath,
-                isActive = true
+                ProfileImage = imagePath,
+                IsActive = true
             };
             var result = await _userManager.CreateAsync(user, Input.Password);
             if (result.Succeeded)
             {
-                return RedirectToPage("/account/register");
+                return RedirectToPage("/account/login");
             }
             foreach (var error in result.Errors)
             {

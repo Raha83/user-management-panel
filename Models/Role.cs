@@ -4,7 +4,7 @@ namespace ManagementPanel
 {
     public class Role : IdentityRole
     {
-        public string? description { get; set; }
+        public string? Description { get; set; }
         public virtual ICollection<Permission> permissions { get; set; } = null!;
     }
 }

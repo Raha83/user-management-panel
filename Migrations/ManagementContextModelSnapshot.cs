@@ -27,27 +27,27 @@ namespace user_management_panel.Migrations
 
             modelBuilder.Entity("ManagementPanel.Permission", b =>
                 {
-                    b.Property<int>("id")
+                    b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int");
 
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("id"));
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<string>("Code")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Description")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("RoleId")
                         .HasColumnType("nvarchar(450)");
 
-                    b.Property<string>("code")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("description")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("name")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.HasKey("id");
+                    b.HasKey("Id");
 
                     b.HasIndex("RoleId");
 
@@ -73,6 +73,15 @@ namespace user_management_panel.Migrations
                     b.Property<bool>("EmailConfirmed")
                         .HasColumnType("bit");
 
+                    b.Property<string>("FName")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<bool>("IsActive")
+                        .HasColumnType("bit");
+
+                    b.Property<string>("LName")
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<bool>("LockoutEnabled")
                         .HasColumnType("bit");
 
@@ -96,6 +105,9 @@ namespace user_management_panel.Migrations
                     b.Property<bool>("PhoneNumberConfirmed")
                         .HasColumnType("bit");
 
+                    b.Property<string>("ProfileImage")
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<string>("SecurityStamp")
                         .HasColumnType("nvarchar(max)");
 
@@ -105,18 +117,6 @@ namespace user_management_panel.Migrations
                     b.Property<string>("UserName")
                         .HasMaxLength(256)
                         .HasColumnType("nvarchar(256)");
-
-                    b.Property<string>("fname")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<bool>("isActive")
-                        .HasColumnType("bit");
-
-                    b.Property<string>("lname")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("profileImage")
-                        .HasColumnType("nvarchar(max)");
 
                     b.HasKey("Id");
 
@@ -277,11 +277,11 @@ namespace user_management_panel.Migrations
                 {
                     b.HasBaseType("Microsoft.AspNetCore.Identity.IdentityRole");
 
+                    b.Property<string>("Description")
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<string>("UserId")
                         .HasColumnType("nvarchar(450)");
-
-                    b.Property<string>("description")
-                        .HasColumnType("nvarchar(max)");
 
                     b.HasIndex("UserId");
 
@@ -349,13 +349,13 @@ namespace user_management_panel.Migrations
             modelBuilder.Entity("ManagementPanel.Role", b =>
                 {
                     b.HasOne("ManagementPanel.User", null)
-                        .WithMany("roles")
+                        .WithMany("Roles")
                         .HasForeignKey("UserId");
                 });
 
             modelBuilder.Entity("ManagementPanel.User", b =>
                 {
-                    b.Navigation("roles");
+                    b.Navigation("Roles");
                 });
 
             modelBuilder.Entity("ManagementPanel.Role", b =>

@@ -48,5 +48,8 @@
         <input asp-for="Input.ProfileImage" type="file" accept="image/*" class="form-control" />
         <span asp-validation-for="Input.ProfileImage" class="text-danger"></span>
     </div>
-    <button type="submit" class="btn btn-primary">ثبت نام</button>
+    <div class="actions">
+        <button type="submit" class="btn btn-primary">ثبت نام</button>
+        <p>آیا حساب کاربری دارید؟از <a href="/account/login">اینجا</a> وارد شوید</p>
+    </div>
 </form>

@@ -5,10 +5,10 @@ namespace ManagementPanel
 {
     public class User : IdentityUser
     {
-        public string? fname { get; set; }
-        public string? lname { get; set; }
-        public string? profileImage { get; set; }
-        public bool isActive { get; set; }
-        public virtual ICollection<Role> roles { get; set; } = null!;
+        public string? FName { get; set; }
+        public string? LName { get; set; }
+        public string? ProfileImage { get; set; }
+        public bool IsActive { get; set; }
+        public virtual ICollection<Role> Roles { get; set; } = null!;
     }
 }

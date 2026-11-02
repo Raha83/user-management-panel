@@ -1,0 +1,30 @@
+@page
+@using Microsoft.CodeAnalysis.Scripting
+@model ManagementPanel.Pages.Account.LoginModel
+@section Styles {
+    <link rel="stylesheet" href="~/css/auth.css" asp-append-version="true" />
+}
+@{
+    ViewData["Title"] = "ورود";
+    Layout = "_layout";
+}
+
+<h2>ورود</h2>
+<form method="post">
+    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+    
+    <div class="mb-3">
+        <label asp-for="Input.Email" class="form-label"></label>
+        <input asp-for="Input.Email" class="form-control" />
+        <span asp-validation-for="Input.Email" class="text-danger"></span>
+    </div>
+    <div class="mb-3">
+        <label asp-for="Input.Password" class="form-label"></label>
+        <input asp-for="Input.Password" class="form-control" />
+        <span asp-validation-for="Input.Password" class="text-danger"></span>
+    </div>
+    <div class="actions">
+        <button type="submit" class="btn btn-primary">ورود</button>
+        <p>آیا حساب کاربری ندارید؟از <a href="/account/register">اینجا</a> ثبت نام کنید</p>
+    </div>
+</form>
