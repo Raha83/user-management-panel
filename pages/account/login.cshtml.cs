@@ -48,6 +48,7 @@ namespace ManagementPanel.Pages.Account
 
             if (user is null)
             {
+                ModelState.AddModelError(string.Empty, "کاربری با این مشخصات یافت نشد");
                 return Page();
             }
             else
@@ -60,6 +61,7 @@ namespace ManagementPanel.Pages.Account
                 }
                 else
                 {
+                    ModelState.AddModelError(string.Empty, "اطلاعات وارد شده صحیح نمی‌باشد");
                     return Page();
                 }
             }
