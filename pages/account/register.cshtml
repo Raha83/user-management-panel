@@ -10,7 +10,7 @@
 }
 
 <h2>ثبت نام</h2>
-<form method="post">
+<form method="post" enctype="multipart/form-data">
     <div asp-validation-summary="ModelOnly" class="text-danger"></div>
     
     <div class="mb-3">
@@ -50,6 +50,6 @@
     </div>
     <div class="actions">
         <button type="submit" class="btn btn-primary">ثبت نام</button>
-        <p>آیا حساب کاربری دارید؟از <a href="/account/login">اینجا</a> وارد شوید</p>
+        <p>آیا حساب کاربری دارید؟از <a href="/Account/Login">اینجا</a> وارد شوید</p>
     </div>
 </form>

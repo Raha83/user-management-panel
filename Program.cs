@@ -1,5 +1,6 @@
 using System.Globalization;
 using ManagementPanel;
+using ManagementPanel.Services;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 
@@ -14,8 +15,12 @@ builder.Services.AddIdentity<User, Role>(options =>
     options.Password.RequiredLength = 8;
     options.Password.RequireDigit = true;
 
-    options.SignIn.RequireConfirmedEmail = false;
+    options.SignIn.RequireConfirmedEmail = true;
 }).AddErrorDescriber<PersianIdentityErrorDescriber>().AddEntityFrameworkStores<ManagementContext>().AddDefaultTokenProviders();
+builder.Services.Configure<EmailSettings>(
+    builder.Configuration.GetSection("EmailSettings")
+);
+builder.Services.AddScoped<EmailSender>();
 builder.Services.AddRazorPages();
 var app = builder.Build();
 app.UseAuthentication();

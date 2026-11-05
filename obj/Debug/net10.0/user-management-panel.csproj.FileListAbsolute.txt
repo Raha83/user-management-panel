@@ -281,5 +281,10 @@ D:\raha\C#\UserManagement\user-management-panel\bin\Debug\net10.0\Microsoft.AspN
 D:\raha\C#\UserManagement\user-management-panel\obj\Debug\net10.0\user-management-panel.RazorAssemblyInfo.cache
 D:\raha\C#\UserManagement\user-management-panel\obj\Debug\net10.0\user-management-panel.RazorAssemblyInfo.cs
 D:\raha\C#\UserManagement\user-management-panel\bin\Debug\net10.0\user-management-panel.staticwebassets.runtime.json
-D:\raha\C#\UserManagement\user-management-panel\obj\Debug\net10.0\compressed\nsfk7lnuiw-{0}-5ipweew5fc-5ipweew5fc.gz
 D:\raha\C#\UserManagement\user-management-panel\obj\Debug\net10.0\compressed\71k5guooae-{0}-6feqxo8ycl-6feqxo8ycl.gz
+D:\raha\C#\UserManagement\user-management-panel\bin\Debug\net10.0\BouncyCastle.Cryptography.dll
+D:\raha\C#\UserManagement\user-management-panel\bin\Debug\net10.0\MailKit.dll
+D:\raha\C#\UserManagement\user-management-panel\bin\Debug\net10.0\MimeKit.dll
+D:\raha\C#\UserManagement\user-management-panel\bin\Debug\net10.0\System.Security.Cryptography.Pkcs.dll
+D:\raha\C#\UserManagement\user-management-panel\bin\Debug\net10.0\runtimes\win\lib\net10.0\System.Security.Cryptography.Pkcs.dll
+D:\raha\C#\UserManagement\user-management-panel\obj\Debug\net10.0\compressed\i3d6uwztu0-{0}-zkhjtipz2f-zkhjtipz2f.gz

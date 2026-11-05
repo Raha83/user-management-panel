@@ -1,4 +1,6 @@
 using System.ComponentModel.DataAnnotations;
+using System.Text.Encodings.Web;
+using ManagementPanel.Services;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
@@ -9,9 +11,11 @@ namespace ManagementPanel.Pages.Account
     public class RegisterModel : PageModel
     {
         private readonly UserManager<User> _userManager;
-        public RegisterModel(UserManager<User> userManager)
+        private readonly EmailSender _emailSender;
+        public RegisterModel(UserManager<User> userManager, EmailSender emailSender)
         {
             _userManager = userManager;
+            _emailSender = emailSender;
         }
 
         [BindProperty]
@@ -74,12 +78,30 @@ namespace ManagementPanel.Pages.Account
                 PhoneNumber = Input.PhoneNumber,
                 PasswordHash = Input.Password,
                 ProfileImage = imagePath,
-                IsActive = true
+                IsActive = false
             };
             var result = await _userManager.CreateAsync(user, Input.Password);
             if (result.Succeeded)
             {
-                return RedirectToPage("/account/login");
+                var token = await _userManager.GenerateEmailConfirmationTokenAsync(user);
+                var confirmationLink = Url.Page("/Account/Activate",
+                pageHandler: null,
+                values: new
+                {
+                    userId = user.Id,
+                    token
+                },
+                protocol: Request.Scheme
+                );
+                var emailBody = $"""
+                <h2>فعالسازی حساب کاربری</h2>
+                <p>جهت فعالسازی حساب کاربری خود روی لینک زیر کلیک کنید</p>
+                <a href="{HtmlEncoder.Default.Encode(confirmationLink!)}">لینک فعالسازی</a>
+                """;
+                await _emailSender.SendEmailAsync(user.Email,
+                "فعالسازی حساب کاربری",
+                emailBody);
+                return RedirectToPage("/Account/RegisterConfirmation");
             }
             foreach (var error in result.Errors)
             {

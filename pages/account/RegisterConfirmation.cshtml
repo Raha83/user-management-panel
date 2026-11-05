@@ -1,0 +1,118 @@
+@page
+
+@{
+    Layout = "_layout";
+    ViewData["Title"] = "تأیید ثبت‌ نام";
+}
+
+@section Styles {
+    <style>
+        .confirmation-wrapper {
+            min-height: 75vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 30px 15px;
+        }
+
+        .confirmation-card {
+            width: 100%;
+            max-width: 500px;
+            background: #fff;
+            padding: 45px 35px;
+            border-radius: 16px;
+            text-align: center;
+            box-shadow: 0 8px 30px rgba(0, 0, 0, 0.08);
+        }
+
+        .confirmation-icon {
+            width: 85px;
+            height: 85px;
+            margin: 0 auto 25px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: #dcfce7;
+            color: #16a34a;
+            border-radius: 50%;
+            font-size: 38px;
+        }
+
+        .confirmation-card h2 {
+            color: #1e293b;
+            font-size: 23px;
+            font-weight: 700;
+            margin-bottom: 18px;
+        }
+
+        .confirmation-card p {
+            color: #64748b;
+            font-size: 15px;
+            line-height: 2;
+            margin-bottom: 12px;
+        }
+
+        .confirmation-note {
+            background: #eff6ff;
+            color: #1d4ed8;
+            padding: 12px 15px;
+            border-radius: 10px;
+            font-size: 13px;
+            margin: 22px 0;
+        }
+
+        .confirmation-btn {
+            display: inline-block;
+            background: #2563eb;
+            color: #fff;
+            text-decoration: none;
+            padding: 11px 30px;
+            border-radius: 10px;
+            font-size: 14px;
+            transition: background 0.2s;
+        }
+
+        .confirmation-btn:hover {
+            background: #1d4ed8;
+            color: #fff;
+        }
+
+        @@media (max-width: 576px) {
+            .confirmation-card {
+                padding: 35px 22px;
+            }
+
+            .confirmation-card h2 {
+                font-size: 20px;
+            }
+        }
+    </style>
+}
+
+<div class="confirmation-wrapper">
+    <div class="confirmation-card">
+
+        <div class="confirmation-icon">
+            ✉
+        </div>
+
+        <h2>ثبت‌نام شما با موفقیت انجام شد!</h2>
+
+        <p>
+            لینک فعال‌سازی حساب کاربری به آدرس ایمیل شما ارسال شده است.
+        </p>
+
+        <p>
+            لطفاً صندوق ورودی ایمیل خود را بررسی کنید و برای فعال‌سازی حساب، روی لینک ارسال‌شده کلیک کنید.
+        </p>
+
+        <div class="confirmation-note">
+            ایمیل را پیدا نکردید؟ پوشه Spam یا هرزنامه را هم بررسی کنید.
+        </div>
+
+        <a asp-page="/Index" class="confirmation-btn">
+            بازگشت به صفحه اصلی
+        </a>
+
+    </div>
+</div>

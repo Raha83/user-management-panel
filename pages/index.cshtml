@@ -1,15 +1,39 @@
 @page
+
 @{
     Layout = "_layout";
-    ViewData["title"] = "صفحه اصلی";
+    ViewData["Title"] = "صفحه اصلی";
 }
-@section Styles {
 
+@section Styles {
+    <link rel="stylesheet" href="~/css/index.css" asp-append-version="true" />
 }
-<nav>
-    <ol>
-        <li><a asp-page="account/register">ثبت نام</a></li>
-        <li><a asp-page="account/login">ورود</a></li>
-    </ol>
-</nav>
-<h1>پنل مدیریت کاربران</h1>
+
+<main class="home-container">
+
+    <div class="home-card">
+
+        <div class="home-icon">
+            <i class="bi bi-people-fill"></i>
+        </div>
+
+        <h1>پنل مدیریت کاربران</h1>
+
+        <p class="home-description">
+            به پنل مدیریت کاربران خوش آمدید.
+            برای ادامه، وارد حساب کاربری خود شوید یا ثبت‌ نام کنید.
+        </p>
+
+        <div class="home-actions">
+            <a asp-page="/Account/Login" class="home-btn login-btn">
+                ورود به حساب کاربری
+            </a>
+
+            <a asp-page="/Account/Register" class="home-btn register-btn">
+                ثبت‌ نام
+            </a>
+        </div>
+
+    </div>
+
+</main>
