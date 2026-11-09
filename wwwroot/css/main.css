@@ -2069,10 +2069,17 @@ h6,
 
 /* =========== form elements css ========== */
 /* ===== input style ===== */
+
 .input-style-1 {
   position: relative;
   margin-bottom: 30px;
 }
+
+.input-style-1 .text-danger{
+  color: #d50100 !important;
+  margin-bottom: 25px;
+}
+
 .input-style-1 label {
   font-size: 14px;
   font-weight: 500;

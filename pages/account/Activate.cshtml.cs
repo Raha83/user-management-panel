@@ -1,8 +1,6 @@
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
-using Microsoft.CodeAnalysis.CSharp.Syntax;
-using Microsoft.Identity.Client;
 
 namespace ManagementPanel.Pages.Account
 {
@@ -24,20 +22,21 @@ namespace ManagementPanel.Pages.Account
                 var user = await _userManager.FindByIdAsync(userId);
                 if (user is null)
                 {
-                    return NotFound("کاربر مورد نظر یافت نشد");
+                    return NotFound("User not found");
                 }
                 else
                 {
                     var result = await _userManager.ConfirmEmailAsync(user, token);
                     if (!result.Succeeded)
                     {
-                        return StatusCode(500, "لینک فعالسازی درست نیست یا منقضی شده است");
+                        return StatusCode(500, "Activation link is incorrect or expired");
                     }
+
                     user.IsActive = true;
                     var updatedUser = await _userManager.UpdateAsync(user);
                     if (!updatedUser.Succeeded)
                     {
-                        return StatusCode(500, "فعالسازی حساب کاربری با خطا مواجه شد");
+                        return StatusCode(500, "Account activation faced error");
                     }
                     return Page();
                 }

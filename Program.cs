@@ -16,7 +16,7 @@ builder.Services.AddIdentity<User, Role>(options =>
     options.Password.RequireDigit = true;
 
     options.SignIn.RequireConfirmedEmail = true;
-}).AddErrorDescriber<PersianIdentityErrorDescriber>().AddEntityFrameworkStores<ManagementContext>().AddDefaultTokenProviders();
+}).AddEntityFrameworkStores<ManagementContext>().AddDefaultTokenProviders();
 builder.Services.Configure<EmailSettings>(
     builder.Configuration.GetSection("EmailSettings")
 );

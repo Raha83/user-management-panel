@@ -1,12 +1,7 @@
 using System.ComponentModel.DataAnnotations;
-using Azure;
-using Microsoft.AspNetCore.Components.Forms;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.AspNetCore.Mvc.ModelBinding;
 using Microsoft.AspNetCore.Mvc.RazorPages;
-using Microsoft.EntityFrameworkCore.Metadata.Internal;
-using Microsoft.VisualStudio.Web.CodeGenerators.Mvc.Templates.BlazorIdentity.Pages.Manage;
 
 namespace ManagementPanel.Pages.Account
 {
@@ -14,11 +9,9 @@ namespace ManagementPanel.Pages.Account
     {
         private readonly UserManager<User> _userManager;
         private readonly SignInManager<User> _signinManager;
-        private readonly IConfiguration _config;
 
-        public LoginModel(IConfiguration config, UserManager<User> userManager, SignInManager<User> signinManager)
+        public LoginModel(UserManager<User> userManager, SignInManager<User> signinManager)
         {
-            _config = config;
             _userManager = userManager;
             _signinManager = signinManager;
         }
@@ -27,13 +20,13 @@ namespace ManagementPanel.Pages.Account
         public LoginInput Input { get; set; }
         public class LoginInput
         {
-            [Required(ErrorMessage = "لطفا ایمیل خود را وارد کنید.")]
-            [Display(Name = "ایمیل")]
-            [EmailAddress(ErrorMessage = "فرمت ایمیل وارد شده صحیح نیست.")]
+            [Required(ErrorMessage = "please enter your email")]
+            [Display(Name = "Email")]
+            [EmailAddress(ErrorMessage = "email format is incorrect")]
             public string Email { get; set; } = string.Empty;
 
-            [Required(ErrorMessage = "لطفا رمز عبور خود را وارد کنید.")]
-            [Display(Name = "رمز عبور")]
+            [Required(ErrorMessage = "please enter your password")]
+            [Display(Name = "Password")]
             [DataType(DataType.Password)]
             public string Password { get; set; } = string.Empty;
         }
@@ -48,7 +41,7 @@ namespace ManagementPanel.Pages.Account
 
             if (user is null)
             {
-                ModelState.AddModelError(string.Empty, "کاربری با این مشخصات یافت نشد");
+                ModelState.AddModelError(string.Empty, "No user found with the provided information");
                 return Page();
             }
             else
@@ -61,7 +54,7 @@ namespace ManagementPanel.Pages.Account
                 }
                 else
                 {
-                    ModelState.AddModelError(string.Empty, "اطلاعات وارد شده صحیح نمی‌باشد");
+                    ModelState.AddModelError(string.Empty, "Given information is incorrect");
                     return Page();
                 }
             }
