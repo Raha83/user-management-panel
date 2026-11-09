@@ -11,6 +11,7 @@ namespace ManagementPanel.Pages.Account
     {
         private readonly UserManager<User> _userManager;
         private readonly EmailSender _emailSender;
+        public string? message { get; set; }
         public RegisterModel(UserManager<User> userManager, EmailSender emailSender)
         {
             _userManager = userManager;
@@ -110,7 +111,7 @@ namespace ManagementPanel.Pages.Account
                     await _emailSender.SendEmailAsync(user.Email,
                     "Account Activation",
                     emailBody);
-                    return RedirectToPage("/Account/RegisterConfirmation");
+                    return RedirectToPage("/Account/Confirmation", new { message = "activation" });
                 }
                 foreach (var error in result.Errors)
                 {

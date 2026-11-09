@@ -1,8 +1,9 @@
 @page
+@model ManagementPanel.Pages.Account.ConfirmationModel
 
 @{
     Layout = "_layout";
-    ViewData["Title"] = "Register Confirm";
+    ViewData["Title"] = "Confirm";
 }
 
 @section Styles {
@@ -95,15 +96,22 @@
         <div class="confirmation-icon">
             ✉
         </div>
-
-        <h2>Your registration has been completed successfully!</h2>
-
+        
+        @if (Model.Message == "activation")
+        {
+            <p>
+                An account activation link has been sent to your email address.
+            </p>
+        }
+        else if (Model.Message == "reset")
+        {
+            <p>
+                A password reset link has been sent to your email address.
+            </p>
+        }
+        
         <p>
-            An account activation link has been sent to your email address.
-        </p>
-
-        <p>
-            Please check your inbox and click the link we sent you to activate your account.
+            Please check your inbox and click the link we sent you.
         </p>
 
         <div class="confirmation-note">
