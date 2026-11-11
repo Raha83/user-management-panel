@@ -60,4 +60,18 @@ namespace ManagementPanel.Pages.Account
             }
         }
     }
+    public class LogoutModel : PageModel
+    {
+        private readonly SignInManager<User> _signinManager;
+
+        public LogoutModel(SignInManager<User> signinManager)
+        {
+            _signinManager = signinManager;
+        }
+        public async Task<IActionResult> OnPostAsync()
+        {
+            await _signinManager.SignOutAsync();
+            return Redirect("/Account/Login");
+        }
+    }
 }

@@ -1,4 +1,5 @@
 using System.ComponentModel.DataAnnotations;
+using System.Security.Claims;
 using System.Text.Encodings.Web;
 using ManagementPanel.Services;
 using Microsoft.AspNetCore.Identity;
@@ -91,6 +92,13 @@ namespace ManagementPanel.Pages.Account
                 };
 
                 var result = await _userManager.CreateAsync(user, Input.Password);
+                await _userManager.AddClaimsAsync(user, new List<Claim>
+                {
+                    new Claim("FName",user.FName ?? ""),
+                    new Claim("LName",user.LName ?? ""),
+                    new Claim("Profile",user.ProfileImage ?? "")
+                });
+
                 if (result.Succeeded)
                 {
                     var token = await _userManager.GenerateEmailConfirmationTokenAsync(user);

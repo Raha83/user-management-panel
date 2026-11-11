@@ -2965,8 +2965,9 @@ h6,
   position: relative;
 }
 .header .header-right .profile-box .profile-info .info .image img {
-  width: 100%;
   border-radius: 50%;
+  width: 100%;
+  height: 100%;
 }
 .header .header-right .profile-box .profile-info .info p {
   font-size: 12px;
