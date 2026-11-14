@@ -49,7 +49,15 @@ namespace ManagementPanel.Pages.Account
                 }
                 else
                 {
-                    return Page();
+                    var result = await _userManager.VerifyUserTokenAsync(user,
+                    _userManager.Options.Tokens.PasswordResetTokenProvider,
+    UserManager<User>.ResetPasswordTokenPurpose,
+     token);
+
+                    if (!result)
+                    {
+                        return StatusCode(400, "Reset link is incorrect or expired");
+                    }
                 }
             }
             return Page();

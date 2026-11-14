@@ -29,7 +29,7 @@ namespace ManagementPanel.Pages.Account
                     var result = await _userManager.ConfirmEmailAsync(user, token);
                     if (!result.Succeeded)
                     {
-                        return StatusCode(500, "Activation link is incorrect or expired");
+                        return StatusCode(400, "Activation link is incorrect or expired");
                     }
 
                     user.IsActive = true;

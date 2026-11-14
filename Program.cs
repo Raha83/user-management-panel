@@ -20,8 +20,17 @@ builder.Services.AddIdentity<User, Role>(options =>
 builder.Services.Configure<EmailSettings>(
     builder.Configuration.GetSection("EmailSettings")
 );
+builder.Services.Configure<DataProtectionTokenProviderOptions>(options =>
+{
+    options.TokenLifespan = TimeSpan.FromMinutes(5);
+});
+builder.Services.ConfigureApplicationCookie(options =>
+{
+    options.ExpireTimeSpan = TimeSpan.FromDays(1);
+});
 builder.Services.AddScoped<EmailSender>();
 builder.Services.AddRazorPages();
+
 var app = builder.Build();
 app.UseAuthentication();
 app.UseAuthorization();

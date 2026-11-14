@@ -61,24 +61,33 @@ namespace ManagementPanel.Pages.Account
                 return Page();
             }
 
-            string? imagePath = null;
-            if (Input.ProfileImage is { Length: > 0 })
-            {
-                var fileName = Guid.NewGuid() + Path.GetExtension(Input.ProfileImage.FileName);
-                var path = Path.Combine("wwwroot/uploads/profiles", fileName);
-                Directory.CreateDirectory(Path.GetDirectoryName(path)!);
-                using var stream = new FileStream(path, FileMode.Create);
-                await Input.ProfileImage.CopyToAsync(stream);
-                imagePath = $"/uploads/profiles/{fileName}";
-            }
-
             var checkEmail = await _userManager.FindByEmailAsync(Input.Email);
             if (checkEmail is not null)
             {
-                ModelState.AddModelError(string.Empty, "This user already exists in the system");
+                if (checkEmail.EmailConfirmed)
+                {
+                    ModelState.AddModelError(string.Empty, "This user already exists in the system");
+                    return Page();
+                }
+                else
+                {
+                    await SendConfirmationEmail(checkEmail);
+                    return RedirectToPage("/Account/Confirmation", new { message = "activation" });
+                }
             }
             else
             {
+                string? imagePath = null;
+                if (Input.ProfileImage is { Length: > 0 })
+                {
+                    var fileName = Guid.NewGuid() + Path.GetExtension(Input.ProfileImage.FileName);
+                    var path = Path.Combine("wwwroot/uploads/profiles", fileName);
+                    Directory.CreateDirectory(Path.GetDirectoryName(path)!);
+                    using var stream = new FileStream(path, FileMode.Create);
+                    await Input.ProfileImage.CopyToAsync(stream);
+                    imagePath = $"/uploads/profiles/{fileName}";
+                }
+
                 var user = new User
                 {
                     FName = Input.FName,
@@ -86,7 +95,6 @@ namespace ManagementPanel.Pages.Account
                     UserName = Input.Email,
                     Email = Input.Email,
                     PhoneNumber = Input.PhoneNumber,
-                    PasswordHash = Input.Password,
                     ProfileImage = imagePath,
                     IsActive = false
                 };
@@ -101,24 +109,7 @@ namespace ManagementPanel.Pages.Account
 
                 if (result.Succeeded)
                 {
-                    var token = await _userManager.GenerateEmailConfirmationTokenAsync(user);
-                    var confirmationLink = Url.Page("/Account/Activate",
-                    pageHandler: null,
-                    values: new
-                    {
-                        userId = user.Id,
-                        token
-                    },
-                    protocol: Request.Scheme
-                    );
-                    var emailBody = $"""
-                <h2>Account Activation</h2>
-                <p>Please click on the link below for your account activation</p>
-                <a href="{HtmlEncoder.Default.Encode(confirmationLink!)}">Activation Link</a>
-                """;
-                    await _emailSender.SendEmailAsync(user.Email,
-                    "Account Activation",
-                    emailBody);
+                    await SendConfirmationEmail(user);
                     return RedirectToPage("/Account/Confirmation", new { message = "activation" });
                 }
                 foreach (var error in result.Errors)
@@ -126,7 +117,29 @@ namespace ManagementPanel.Pages.Account
                     ModelState.AddModelError(string.Empty, error.Description);
                 }
             }
+
             return Page();
+        }
+        private async Task SendConfirmationEmail(User user)
+        {
+            var token = await _userManager.GenerateEmailConfirmationTokenAsync(user);
+            var confirmationLink = Url.Page("/Account/Activate",
+            pageHandler: null,
+            values: new
+            {
+                userId = user.Id,
+                token
+            },
+            protocol: Request.Scheme
+            );
+            var emailBody = $"""
+                <h2>Account Activation</h2>
+                <p>Please click on the link below for your account activation</p>
+                <a href="{HtmlEncoder.Default.Encode(confirmationLink!)}">Activation Link</a>
+                """;
+            await _emailSender.SendEmailAsync(user.Email,
+            "Account Activation",
+            emailBody);
         }
     }
 }
