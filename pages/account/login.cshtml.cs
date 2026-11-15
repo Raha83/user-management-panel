@@ -56,7 +56,7 @@ namespace ManagementPanel.Pages.Account
 
                 if (passwordCheck.Succeeded)
                 {
-                    return RedirectToPage("/Index");
+                    return RedirectToPage("/Dashboard/Index");
                 }
                 else
                 {
