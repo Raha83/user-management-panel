@@ -5,6 +5,7 @@ using ManagementPanel.Services;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
+using Microsoft.EntityFrameworkCore.Metadata.Internal;
 
 namespace ManagementPanel.Pages.Account
 {
@@ -80,6 +81,14 @@ namespace ManagementPanel.Pages.Account
                 string? imagePath = null;
                 if (Input.ProfileImage is { Length: > 0 })
                 {
+                    var allowedExtensions = new[] { ".jpg", ".png", ".jpeg", ".webp" };
+                    var extension = Path.GetExtension(Input.ProfileImage.FileName).ToLowerInvariant();
+
+                    if (!allowedExtensions.Contains(extension))
+                    {
+                        ModelState.AddModelError(string.Empty, "Only image files are allowed");
+                        return Page();
+                    }
                     var fileName = Guid.NewGuid() + Path.GetExtension(Input.ProfileImage.FileName);
                     var path = Path.Combine("wwwroot/uploads/profiles", fileName);
                     Directory.CreateDirectory(Path.GetDirectoryName(path)!);
