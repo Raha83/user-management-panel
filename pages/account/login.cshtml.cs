@@ -1,4 +1,5 @@
 using System.ComponentModel.DataAnnotations;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
@@ -44,6 +45,11 @@ namespace ManagementPanel.Pages.Account
                 ModelState.AddModelError(string.Empty, "No user found with the provided information");
                 return Page();
             }
+            else if (user.EmailConfirmed == false)
+            {
+                ModelState.AddModelError(string.Empty, "Your account is not activated");
+                return Page();
+            }
             else
             {
                 var passwordCheck = await _signinManager.PasswordSignInAsync(user, Input.Password, isPersistent: false, lockoutOnFailure: false);
@@ -60,6 +66,8 @@ namespace ManagementPanel.Pages.Account
             }
         }
     }
+
+    [Authorize]
     public class LogoutModel : PageModel
     {
         private readonly SignInManager<User> _signinManager;

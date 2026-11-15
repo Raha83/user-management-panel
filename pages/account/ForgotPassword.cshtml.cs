@@ -35,8 +35,8 @@ namespace ManagementPanel.Pages.Account
             }
             else
             {
-                var user = await _userManager.FindByEmailAsync(Input.Email);
-                if (user is null)
+                var user = await _userManager.FindByEmailAsync(Input.Email!);
+                if (user is null || user.EmailConfirmed == false)
                 {
                     ModelState.AddModelError(string.Empty, "This user is not registered");
                 }
@@ -57,8 +57,8 @@ namespace ManagementPanel.Pages.Account
                 <p>Please click on the link below for resetting your password</p>
                 <a href="{HtmlEncoder.Default.Encode(resetLink!)}">Reset Password Link</a>
                 """;
-                    await _emailSender.SendEmailAsync(user.Email, "Password Reset", emailBody);
-                    return RedirectToPage("/Account/Confirmation", new { message = "reset" });
+                    await _emailSender.SendEmailAsync(user.Email!, "Password Reset", emailBody);
+                    return RedirectToPage("/Account/Confirmation", new { message = "reset", userId = user.Id });
 
                 }
                 return Page();

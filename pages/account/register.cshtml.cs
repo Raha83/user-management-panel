@@ -72,7 +72,7 @@ namespace ManagementPanel.Pages.Account
                 else
                 {
                     await SendConfirmationEmail(checkEmail);
-                    return RedirectToPage("/Account/Confirmation", new { message = "activation" });
+                    return RedirectToPage("/Account/Confirmation", new { message = "activation", userId = checkEmail.Id });
                 }
             }
             else
@@ -100,17 +100,17 @@ namespace ManagementPanel.Pages.Account
                 };
 
                 var result = await _userManager.CreateAsync(user, Input.Password);
-                await _userManager.AddClaimsAsync(user, new List<Claim>
+                if (result.Succeeded)
+                {
+                    await _userManager.AddClaimsAsync(user, new List<Claim>
                 {
                     new Claim("FName",user.FName ?? ""),
                     new Claim("LName",user.LName ?? ""),
                     new Claim("Profile",user.ProfileImage ?? "")
                 });
 
-                if (result.Succeeded)
-                {
                     await SendConfirmationEmail(user);
-                    return RedirectToPage("/Account/Confirmation", new { message = "activation" });
+                    return RedirectToPage("/Account/Confirmation", new { message = "activation", userId = user.Id });
                 }
                 foreach (var error in result.Errors)
                 {
@@ -137,7 +137,7 @@ namespace ManagementPanel.Pages.Account
                 <p>Please click on the link below for your account activation</p>
                 <a href="{HtmlEncoder.Default.Encode(confirmationLink!)}">Activation Link</a>
                 """;
-            await _emailSender.SendEmailAsync(user.Email,
+            await _emailSender.SendEmailAsync(user.Email!,
             "Account Activation",
             emailBody);
         }

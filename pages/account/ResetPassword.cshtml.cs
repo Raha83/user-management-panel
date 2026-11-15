@@ -45,7 +45,7 @@ namespace ManagementPanel.Pages.Account
                 var user = await _userManager.FindByIdAsync(userId);
                 if (user is null)
                 {
-                    NotFound("User not found");
+                    return NotFound("User not found");
                 }
                 else
                 {
@@ -70,10 +70,10 @@ namespace ManagementPanel.Pages.Account
             }
             else
             {
-                var user = await _userManager.FindByIdAsync(UserId);
+                var user = await _userManager.FindByIdAsync(UserId!);
                 if (user is null)
                 {
-                    NotFound("User not found");
+                    return NotFound("User not found");
                 }
                 else
                 {
@@ -95,7 +95,6 @@ namespace ManagementPanel.Pages.Account
 
                     return Page();
                 }
-                return Page();
             }
         }
     }

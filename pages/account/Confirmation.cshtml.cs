@@ -1,3 +1,5 @@
+using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 
 namespace ManagementPanel.Pages.Account
@@ -5,9 +7,31 @@ namespace ManagementPanel.Pages.Account
     public class ConfirmationModel : PageModel
     {
         public string? Message { get; set; }
-        public void OnGetAsync(string message)
+        private readonly UserManager<User> _userManager;
+        public ConfirmationModel(UserManager<User> userManager)
         {
-            Message = message;
+            _userManager = userManager;
+        }
+        public async Task<IActionResult> OnGetAsync(string message, string userId)
+        {
+            if (string.IsNullOrEmpty(message) || string.IsNullOrEmpty(userId))
+            {
+                return BadRequest();
+            }
+            else
+            {
+                var user = await _userManager.FindByIdAsync(userId);
+                if (user is null)
+                {
+                    return NotFound("User not found");
+                }
+                else
+                {
+                    Message = message;
+                }
+
+                return Page();
+            }
         }
     }
 }
