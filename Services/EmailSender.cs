@@ -1,7 +1,6 @@
 using MailKit.Net.Smtp;
 using MimeKit;
 using Microsoft.Extensions.Options;
-using MailKit.Security;
 
 namespace ManagementPanel.Services
 {
