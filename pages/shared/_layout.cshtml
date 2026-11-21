@@ -55,8 +55,8 @@
                         </a>
                         <ul id="ddmenu_1" class="collapse dropdown-nav">
                             <li>
-                                <a href="/Dashboard/Index"
-                                   class="@(ViewContext.RouteData.Values["page"]?.ToString() == "/Dashboard/Index" ? "active" : "")">
+                                <a href="/Index"
+                                   class="@(ViewContext.RouteData.Values["page"]?.ToString() == "/Index" ? "active" : "")">
                                     eCommerce
                                 </a>
                             </li>
@@ -79,7 +79,7 @@
                         </a>
                         <ul id="ddmenu_2" class="collapse dropdown-nav">
                             <li>
-                                <a href="settings.html">Settings</a>
+                                <a href="/Profile/Settings">Settings</a>
                             </li>
                         </ul>
                     </li>
@@ -245,7 +245,12 @@
                                                     </div>
                                                 
                                                 }
-                                                
+                                                else
+                                                {
+                                                    <div class="image">
+                                                        <img src="~/images/profile/images.jpg" alt="" />
+                                                    </div>
+                                                }
                                                 <div>
                                                     @if (!string.IsNullOrWhiteSpace(@firstName) ||
                                                          !string.IsNullOrWhiteSpace(@lastName))
@@ -268,7 +273,7 @@
 
                                     <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="profile">
                                         <li>
-                                            <a href="#0">
+                                            <a href="/Profile/Settings">
                                                 <i class="lni lni-user"></i> Edit Profile
                                             </a>
                                         </li>

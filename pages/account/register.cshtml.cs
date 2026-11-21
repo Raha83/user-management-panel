@@ -37,7 +37,7 @@ namespace ManagementPanel.Pages.Account
 
             [Display(Name = "Phone Number")]
             [DataType(DataType.PhoneNumber)]
-            [Phone(ErrorMessage = "Phone number format is incorrect")]
+            [RegularExpression(@"^[0-9]{11}", ErrorMessage = "Phone number should contain 11 digits")]
             public string? PhoneNumber { get; set; }
 
             [Required(ErrorMessage = "Please enter your password")]

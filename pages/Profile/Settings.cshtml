@@ -1,0 +1,92 @@
+@page
+@model ManagementPanel.Pages.Profile.ProfileModel
+@{
+    Layout = "_layout";
+    ViewData["title"] = "Settings";
+}
+
+<section class="section">
+    <div class="container-fluid">
+
+        <!-- ========== title-wrapper start ========== -->
+        <div class="title-wrapper pt-30">
+            <div class="row align-items-center">
+                <div class="col-md-6">
+                    <div class="title">
+                        <h2>Settings</h2>
+                    </div>
+                </div>
+                <!-- end col -->
+            </div>
+            <!-- end row -->
+        </div>
+        <!-- ========== title-wrapper end ========== -->
+
+        <div class="row">
+            <div class="card-style settings-card-1 mb-30">
+                <div class="title mb-30 d-flex justify-content-between align-items-center">
+                    <h6>My Profile</h6>
+                    <button class="border-0 bg-transparent">
+                        <i class="lni lni-pencil-alt"></i>
+                    </button>
+                </div>
+                <form method="post" enctype="multipart/form-data">
+                    <div class="profile-info">
+                        <div class="d-flex align-items-center mb-30">
+                            <div class="profile-image">
+                                @if (@Model.Input.CurrentImage is not null)
+                                {
+                                    <img src="@Model.Input.CurrentImage" alt="image" />
+                                }
+                                else
+                                {
+                                    <img src="~/images/profile/images.jpg" alt="" />
+                                }
+
+                                <div class="update-image">
+                                    <input asp-for="Input.NewImage" accept=".jpg, .png, .jpeg, .webp" />
+                                    <label asp-for="Input.NewImage"><i class="lni lni-cloud-upload"></i></label>
+                                    <span asp-validation-for="Input.NewImage" class="text-danger"></span>
+                                </div>
+                            </div>
+                        </div>
+                        <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                        <div class="input-style-1">
+                            <label asp-for="Input.FName"></label>
+                            <input asp-for="Input.FName" placeholder="First Name" />
+                            <span asp-validation-for="Input.FName" class="text-danger"></span>
+                        </div>
+                        <div class="input-style-1">
+                            <label asp-for="Input.LName"></label>
+                            <input asp-for="Input.LName" placeholder="Last Name" />
+                            <span asp-validation-for="Input.LName" class="text-danger"></span>
+                        </div>
+                        <div class="input-style-1">
+                            <label asp-for="Input.Email"></label>
+                            <input asp-for="Input.Email" placeholder="Email" readonly />
+                            <span asp-validation-for="Input.Email" class="text-danger"></span>
+                        </div>
+                        <div class="input-style-1">
+                            <label asp-for="Input.PhoneNumber"></label>
+                            <input asp-for="Input.PhoneNumber" placeholder="Phone" />
+                            <span asp-validation-for="Input.PhoneNumber" class="text-danger"></span>
+                        </div>
+                        <div class="input-style-1">
+                            <label asp-for="Input.Password"></label>
+                            <input asp-for="Input.Password" placeholder="Password" />
+                            <span asp-validation-for="Input.Password" class="text-danger"></span>
+                        </div>
+                        <div class="col-12">
+                            <button class="main-btn primary-btn btn-hover">
+                                Update Profile
+                            </button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+            <!-- end card -->
+        </div>
+        <!-- end row -->
+    </div>
+    <!-- end container -->
+</section>
