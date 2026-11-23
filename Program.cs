@@ -1,8 +1,8 @@
-using System.Globalization;
-using ManagementPanel;
 using ManagementPanel.Services;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
+using ManagementPanel.Data;
+using ManagementPanel.Models;
 
 var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddDbContext<ManagementContext>(options =>
@@ -36,5 +36,9 @@ app.UseAuthentication();
 app.UseAuthorization();
 app.UseStaticFiles();
 app.MapRazorPages();
+using (var scope = app.Services.CreateScope())
+{
+    await RoleSeeder.SeedRolesAsync(scope.ServiceProvider);
+}
 
 app.Run();

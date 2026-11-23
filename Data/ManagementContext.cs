@@ -1,7 +1,8 @@
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
+using ManagementPanel.Models;
 
-namespace ManagementPanel
+namespace ManagementPanel.Data
 {
     public class ManagementContext : IdentityDbContext<User>
     {

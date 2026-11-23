@@ -1,4 +1,4 @@
-namespace ManagementPanel
+namespace ManagementPanel.Models
 {
     public class Permission
     {
