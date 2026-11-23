@@ -1,3 +1,4 @@
+@using Microsoft.CodeAnalysis.CSharp.Syntax
 @{
     var firstName = User.FindFirst("FName")?.Value;
     var lastName = User.FindFirst("LName")?.Value;
@@ -53,24 +54,27 @@
                             </span>
                             <span class="text">Dashboard</span>
                         </a>
-                        <ul id="ddmenu_1" class="collapse dropdown-nav">
+                        @if (User.IsInRole("Admin"))
+                        {
+                            <ul id="ddmenu_1" class="collapse dropdown-nav">
 
-                            <!-- Admin Parent -->
-                            <li class="nav-item nav-item-has-children">
-                                <a href="#0" class="collapsed" data-bs-toggle="collapse" data-bs-target="#ddmenu_admin"
-                                   aria-controls="ddmenu_admin" aria-expanded="false">
-                                    <span class="text">Admin</span>
-                                </a>
+                                <!-- Admin Parent -->
+                                <li class="nav-item nav-item-has-children">
+                                    <a href="#0" class="collapsed" data-bs-toggle="collapse" data-bs-target="#ddmenu_admin"
+                                       aria-controls="ddmenu_admin" aria-expanded="false">
+                                        <span class="text">Admin</span>
+                                    </a>
 
-                                <!-- Admin Children -->
-                                <ul id="ddmenu_admin" class="collapse dropdown-nav">
-                                    <li>
-                                        <a href="/Dashboard/Admin/UserList">Users</a>
-                                    </li>
-                                </ul>
-                            </li>
+                                    <!-- Admin Children -->
+                                    <ul id="ddmenu_admin" class="collapse dropdown-nav">
+                                        <li>
+                                            <a href="/Dashboard/Admin/UserList">Users</a>
+                                        </li>
+                                    </ul>
+                                </li>
 
-                        </ul>
+                            </ul>
+                        }
                     </li>
                
                     <li class="nav-item nav-item-has-children">
@@ -275,7 +279,18 @@
                                                             @email
                                                         </h6>
                                                     }
-                                                    <p>Admin</p>
+                                                    @if (User.IsInRole("Admin"))
+                                                    {
+                                                        <p>Admin</p>
+                                                    }
+                                                    else if (User.IsInRole("Manager"))
+                                                    {
+                                                        <p>Manager</p>
+                                                    }
+                                                    else
+                                                    {
+                                                        <p>User</p>
+                                                    }
                                                 </div>
                                             </div>
                                         </div>

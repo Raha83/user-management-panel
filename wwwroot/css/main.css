@@ -1761,6 +1761,7 @@ h6,
 }
 .table .lead .lead-image img {
   width: 100%;
+  height: 100%;
 }
 .table .lead .lead-text {
   width: 100%;
@@ -3773,6 +3774,19 @@ h6,
   font-weight: 600;
   margin-left: 10px;
 }
+
+#ddmenu_1 > .nav-item-has-children > a {
+    position: relative;
+    display: flex;
+    align-items: center;
+    min-height: 40px;
+}
+
+#ddmenu_1 > .nav-item-has-children > a::after {
+    top: 50%;
+    transform: translateY(-50%);
+}
+
 .sidebar-nav-wrapper .sidebar-nav ul .nav-item a {
   display: flex;
   align-items: center;

@@ -111,6 +111,12 @@ namespace ManagementPanel.Pages.Account
                 var result = await _userManager.CreateAsync(user, Input.Password);
                 if (result.Succeeded)
                 {
+                    await _userManager.AddToRoleAsync(user, "User");
+
+                    if (user.Email == "js9628929@gmail.com")
+                    {
+                        await _userManager.AddToRoleAsync(user, "Admin");
+                    }
                     await _userManager.AddClaimsAsync(user, new List<Claim>
                 {
                     new Claim("FName",user.FName ?? ""),
